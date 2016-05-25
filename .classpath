@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/GeoMASON"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/MASON_ABM"/>
+	<classpathentry kind="lib" path="/Volumes/JetDrive/Drive/workspace/EngDModel2/jars/ant-1.8.1.jar"/>
+	<classpathentry kind="lib" path="/Volumes/JetDrive/Drive/workspace/EngDModel2/jars/gt-main-13.1.jar"/>
+	<classpathentry kind="lib" path="/Volumes/JetDrive/Drive/workspace/EngDModel2/jars/gt-swing-13.1.jar"/>
+	<classpathentry kind="lib" path="/Volumes/JetDrive/Drive/workspace/EngDModel2/jars/jcommon-1.0.21 2.jar"/>
+	<classpathentry kind="lib" path="/Volumes/JetDrive/Drive/workspace/EngDModel2/jars/jcommon-1.0.21.jar"/>
+	<classpathentry kind="lib" path="/Volumes/JetDrive/Drive/workspace/EngDModel2/jars/jfreechart-1.0.17.jar"/>
+	<classpathentry kind="lib" path="/Volumes/JetDrive/Drive/workspace/EngDModel2/jars/jfreechart-1.0.18-experimental 2.jar"/>
+	<classpathentry kind="lib" path="/Volumes/JetDrive/Drive/workspace/EngDModel2/jars/jfreechart-1.0.18-experimental.jar"/>
+	<classpathentry kind="lib" path="/Volumes/JetDrive/Drive/workspace/EngDModel2/jars/jmf-2.1.1e 2.jar"/>
+	<classpathentry kind="lib" path="/Volumes/JetDrive/Drive/workspace/EngDModel2/jars/jmf-2.1.1e.jar"/>
+	<classpathentry kind="lib" path="/Volumes/JetDrive/Drive/workspace/EngDModel2/jars/jts-1.13.jar"/>
+	<classpathentry kind="lib" path="/Volumes/JetDrive/Drive/workspace/EngDModel2/jars/opencsv-2.3 2.jar"/>
+	<classpathentry kind="lib" path="/Volumes/JetDrive/Drive/workspace/EngDModel2/jars/opencsv-2.3.jar"/>
+	<classpathentry kind="lib" path="/Volumes/JetDrive/Drive/workspace/EngDModel2/jars/opencsv-3.6 2.jar"/>
+	<classpathentry kind="lib" path="/Volumes/JetDrive/Drive/workspace/EngDModel2/jars/opencsv-3.6.jar"/>
+	<classpathentry kind="lib" path="/Volumes/JetDrive/Drive/workspace/EngDModel2/libs/geomason.1.5.jar"/>
+	<classpathentry kind="lib" path="/Volumes/JetDrive/Drive/workspace/EngDModel2/libs/mason.18.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
