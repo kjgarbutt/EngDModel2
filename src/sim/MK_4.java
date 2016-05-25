@@ -66,14 +66,14 @@ public class MK_4 extends SimState	{
     // maps between unique edge IDs and edge structures themselves
     HashMap<Integer, GeomPlanarGraphEdge> idsToEdges =
         new HashMap<Integer, GeomPlanarGraphEdge>();
-    HashMap<GeomPlanarGraphEdge, ArrayList<MainAgent>> edgeTraffic =
+    public HashMap<GeomPlanarGraphEdge, ArrayList<MainAgent>> edgeTraffic =
         new HashMap<GeomPlanarGraphEdge, ArrayList<MainAgent>>();
 
     public GeomVectorField mainagents = new GeomVectorField();
     ArrayList<MainAgent> agentList = new ArrayList<MainAgent>();
 
     // Here we force the agents to go to or from work at any time
-    boolean goToWork = true;
+    public boolean goToWork = true;
     public boolean getGoToWork()	{
         return goToWork;
     }
@@ -83,13 +83,13 @@ public class MK_4 extends SimState	{
     
     HashMap<Integer, GeomPlanarGraphEdge> idsToEdges1 =
             new HashMap<Integer, GeomPlanarGraphEdge>();
-    HashMap<GeomPlanarGraphEdge, ArrayList<NGOAgent>> edgeTraffic1 =
+    public HashMap<GeomPlanarGraphEdge, ArrayList<NGOAgent>> edgeTraffic1 =
             new HashMap<GeomPlanarGraphEdge, ArrayList<NGOAgent>>();
 
     public GeomVectorField ngogents = new GeomVectorField();
     ArrayList<NGOAgent> ngoAgentList = new ArrayList<NGOAgent>();
 
-    boolean goToWork1 = true;
+    public boolean goToWork1 = true;
     public boolean getGoToWork1()	{
         return goToWork1;
     }
@@ -97,13 +97,13 @@ public class MK_4 extends SimState	{
     //////////////////// ElderlyAgent ///////////////////////////
     HashMap<Integer, GeomPlanarGraphEdge> idsToEdges2 =
             new HashMap<Integer, GeomPlanarGraphEdge>();
-    HashMap<GeomPlanarGraphEdge, ArrayList<ElderlyAgent>> edgeTraffic2 =
+    public HashMap<GeomPlanarGraphEdge, ArrayList<ElderlyAgent>> edgeTraffic2 =
             new HashMap<GeomPlanarGraphEdge, ArrayList<ElderlyAgent>>();
 
     public GeomVectorField elderlyagent = new GeomVectorField();
     ArrayList<ElderlyAgent> elderlyAgentList = new ArrayList<ElderlyAgent>();
 
-    boolean goToWork2 = true;
+    public boolean goToWork2 = true;
     public boolean getGoToWork2()	{
         return goToWork2;
     }
@@ -111,13 +111,13 @@ public class MK_4 extends SimState	{
     //////////////////// LimitedActionsAgent //////////////////////
     HashMap<Integer, GeomPlanarGraphEdge> idsToEdges3 =
             new HashMap<Integer, GeomPlanarGraphEdge>();
-    HashMap<GeomPlanarGraphEdge, ArrayList<LimitedActionsAgent>> edgeTraffic3 =
+    public HashMap<GeomPlanarGraphEdge, ArrayList<LimitedActionsAgent>> edgeTraffic3 =
             new HashMap<GeomPlanarGraphEdge, ArrayList<LimitedActionsAgent>>();
 
     public GeomVectorField limitedactionsagent = new GeomVectorField();
     ArrayList<LimitedActionsAgent> limitedActionsAgentList = new ArrayList<LimitedActionsAgent>();
 
-    boolean goToWork3 = true;
+    public boolean goToWork3 = true;
     public boolean getGoToWork3()	{
         return goToWork3;
     }

@@ -52,12 +52,12 @@ public final class NGOAgent implements Steppable	{
     double currentIndex = 0.0; // current location along line
     GeomPlanarGraphEdge currentEdge = null;
     int linkDirection = 1;
-    double speed = 0; // useful for graph
+    public double speed = 0; // useful for graph
     ArrayList<GeomPlanarGraphDirectedEdge> pathFromHomeToWork =
         new ArrayList<GeomPlanarGraphDirectedEdge>();
     int indexOnPath = 0;
     int pathDirection = 1;
-    boolean reachedDestination = false;
+    public boolean reachedDestination = false;
     PointMoveTo pointMoveTo = new PointMoveTo();
 
     //static private GeometryFactory fact = new GeometryFactory();
@@ -208,7 +208,7 @@ public final class NGOAgent implements Steppable	{
    /**
     * Flip the agent's path around
     */
-   void flipPath()	{
+   public void flipPath()	{
        reachedDestination = false;
        pathDirection = -pathDirection;
        linkDirection = -linkDirection;
