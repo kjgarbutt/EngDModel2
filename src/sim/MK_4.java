@@ -187,7 +187,7 @@ public class MK_4 extends SimState	{
         try {
             // read in the roads shapefile to create the transit network
         	URL roadsFile = MK_4.class.getResource
-        			("/data/NorfolkITN.shp");
+        			("/data/Final_ITN.shp");
             ShapeFileImporter.read(roadsFile, roads);
             System.out.println("	Roads shapefile: " +roadsFile);
             
@@ -195,7 +195,7 @@ public class MK_4 extends SimState	{
             
             // read in the LSOA shapefile to create the backgroundss
             URL areasFile = MK_4.class.getResource
-            		("/data/NorfolkLSOA.shp");
+            		("/data/Final_LSOA.shp");
             ShapeFileImporter.read(areasFile, lsoa);
             System.out.println("	LSOA shapefile: " +areasFile);
            
@@ -445,7 +445,8 @@ public class MK_4 extends SimState	{
                 GeomPlanarGraphEdge startingEdge = idsToEdges.get(
                 	(int) Double.parseDouble(ROAD_ID));
                 GeomPlanarGraphEdge goalEdge = idsToEdges.get(
-                    goals[ random.nextInt(goals.length)]);
+            		(int) Double.parseDouble(workTract));
+                    //goals[ random.nextInt(goals.length)]);
                 //System.out.println("startingEdge: " +startingEdge);
                 //System.out.println("idsToEdges: " +idsToEdges);
                 //System.out.println("goalEdge: " +goalEdge);
@@ -527,7 +528,8 @@ public class MK_4 extends SimState	{
                 GeomPlanarGraphEdge startingEdge = idsToEdges.get(
                 		(int) Double.parseDouble(ROAD_ID));
                 GeomPlanarGraphEdge goalEdge = idsToEdges.get(
-                    goals1[ random.nextInt(goals1.length)]);
+                		(int) Double.parseDouble(workTract));
+                    //goals1[ random.nextInt(goals1.length)]);
 
                 for (int i = 0; i < pop; i++)	{
                 	//pop; i++)	{ 	// NO IDEA IF THIS MAKES A DIFFERENCE!?!
@@ -600,7 +602,8 @@ public class MK_4 extends SimState	{
                 GeomPlanarGraphEdge startingEdge = idsToEdges.get(
                 		(int) Double.parseDouble(ROAD_ID));
                 GeomPlanarGraphEdge goalEdge = idsToEdges.get(
-                    goals2[ random.nextInt(goals2.length)]);
+                		(int) Double.parseDouble(workTract));
+                //goals2[ random.nextInt(goals2.length)]);
 
                 for (int i = 0; i < pop; i++)	{
                 	//pop; i++)	{ 	// NO IDEA IF THIS MAKES A DIFFERENCE!?!
@@ -673,7 +676,8 @@ public class MK_4 extends SimState	{
                 GeomPlanarGraphEdge startingEdge = idsToEdges.get(
                 		(int) Double.parseDouble(ROAD_ID));
                 GeomPlanarGraphEdge goalEdge = idsToEdges.get(
-                    goals3[ random.nextInt(goals3.length)]);
+                		(int) Double.parseDouble(workTract));
+                //goals3[ random.nextInt(goals3.length)]);
 
                 for (int i = 0; i < pop; i++)	{
                 	//pop; i++)	{ 	// NO IDEA IF THIS MAKES A DIFFERENCE!?!
