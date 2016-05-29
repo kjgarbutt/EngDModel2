@@ -2,8 +2,8 @@ package objects.agents;
 
 import java.util.ArrayList;
 
-import sim.MK_4;
 import objects.network.AStar;
+import sim.MK_4;
 import sim.engine.SimState;
 import sim.engine.Steppable;
 import sim.util.geo.GeomPlanarGraphDirectedEdge;
@@ -81,8 +81,8 @@ public final class MainAgent implements Steppable	{
 	   // set up information about where the node is and where it's going
 	   homeNode = startingEdge.getDirEdge(0).getFromNode();
 	   workNode = goalEdge.getDirEdge(0).getToNode();
-	   homeTract = homeTract;
-	   //workTract = workTract;
+	   this.homeTract = homeTract;
+	   this.workTract = workTract;
 
 	   // set the location to be displayed
 	   GeometryFactory fact = new GeometryFactory();

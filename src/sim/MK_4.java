@@ -10,9 +10,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 import objects.agents.ElderlyAgent;
+import objects.agents.LimitedActionsAgent;
 import objects.agents.MainAgent;
 import objects.agents.NGOAgent;
-import objects.agents.LimitedActionsAgent;
 import sim.engine.SimState;
 import sim.engine.Steppable;
 import sim.field.geo.GeomVectorField;
@@ -26,6 +26,8 @@ import com.vividsolutions.jts.geom.Envelope;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.Point;
 import com.vividsolutions.jts.planargraph.Node;
+
+import ec.util.MersenneTwisterFast;
 
 /**
  *
@@ -62,6 +64,7 @@ public class MK_4 extends SimState	{
     public GeomPlanarGraph network = new GeomPlanarGraph();	// Stores road network connections
     public GeomVectorField junctions = new GeomVectorField();	// nodes for intersections
 
+    
     ///////////////////// MainAgent //////////////////////////////
     // maps between unique edge IDs and edge structures themselves
     HashMap<Integer, GeomPlanarGraphEdge> idsToEdges =
@@ -77,10 +80,8 @@ public class MK_4 extends SimState	{
     public boolean getGoToWork()	{
         return goToWork;
     }
-
     
     ///////////////////// NGOAgent //////////////////////////////
-    
     HashMap<Integer, GeomPlanarGraphEdge> idsToEdges1 =
             new HashMap<Integer, GeomPlanarGraphEdge>();
     public HashMap<GeomPlanarGraphEdge, ArrayList<NGOAgent>> edgeTraffic1 =
@@ -122,6 +123,8 @@ public class MK_4 extends SimState	{
         return goToWork3;
     }
     
+    //////////////////// agentGoals //////////////////////
+    
     /**
      * Here we set the 'goals', or destinations, which relate to ROAD_ID in NorfolkITNLSOA.csv/.shp...
      * 30250 = Norfolk & Norwich Hospital
@@ -131,9 +134,9 @@ public class MK_4 extends SimState	{
      * 49307 = Sprowston Fire Station - BRC Fire & Emergency Support
      *
      */
-
+    
     Integer[] goals =	{	// MainAgent
-    		60708, 70353, 75417, 29565, 3715, 15816, 47794, 16561, 70035, 55437
+    		60708, 70353, 75417, 29565, 3715, 15816, 47794, 16561, 70035, 55437, 98, 45, 987, 345, 5643, 234, 21, 8765, 10345
     };
     
     Integer[] goals1 =	{	// NGOAgent
@@ -147,6 +150,7 @@ public class MK_4 extends SimState	{
     Integer[] goals3 =	{	// LimitedActionsAgent
     		60708, 70353, 75417, 29565, 3715, 15816, 47794, 16561, 70035, 55437
     };
+    
 
     ///////////////////////////////////////////////////////////////////////////
 	/////////////////////////// BEGIN FUNCTIONS ///////////////////////////////
@@ -158,6 +162,7 @@ public class MK_4 extends SimState	{
      */
     public MK_4(long seed)	{
         super(seed);
+        random = new MersenneTwisterFast(12345);
     }
     
     
@@ -186,6 +191,7 @@ public class MK_4 extends SimState	{
         
         try {
             // read in the roads shapefile to create the transit network
+        	
         	URL roadsFile = MK_4.class.getResource
         			("/data/Final_ITN.shp");
             ShapeFileImporter.read(roadsFile, roads);
@@ -253,7 +259,7 @@ public class MK_4 extends SimState	{
             //////////////////////////////////////////////
             ////////////////// AGENTS ////////////////////
             //////////////////////////////////////////////
-
+            
             // initialize agents using the following source .CSV files
             populateAgent("/data/NorfolkITNAGENT.csv");
             populateNGO("/data/NorfolkITNNGO.csv");
@@ -297,58 +303,60 @@ public class MK_4 extends SimState	{
 					MK_4 gstate = (MK_4) state;
 
 					// checks to see if anyone has not yet reached destination
+					// turning off makes agents move to next edge then back again
                     for (MainAgent a : gstate.agentList)	{
                         if (!a.reachedDestination)	{	// someone is still moving: let them do so
                             return; 
                         }
                     }
-                    
-                    for (NGOAgent b : gstate.ngoAgentList)	{
-                        if (!b.reachedDestination)	{
-                            return;
-                        }
-                    }
-
-                    for (ElderlyAgent c : gstate.elderlyAgentList)	{
-                        if (!c.reachedDestination)	{
-                            return;
-                        }
-                    }
-
-                    for (LimitedActionsAgent d : gstate.limitedActionsAgentList)	{
-                        if (!d.reachedDestination)	{
-                            return;
-                        }
-                    }
-                    
                     // Now send everyone back in the opposite direction
                     boolean toWork = gstate.goToWork;
                     gstate.goToWork = !toWork;
-                    
-                    boolean toWork1 = gstate.goToWork1;
-                    gstate.goToWork1 = !toWork1;
-
-                    boolean toWork2 = gstate.goToWork2;
-                    gstate.goToWork2 = !toWork2;
-
-                    boolean toWork3 = gstate.goToWork3;
-                    gstate.goToWork3 = !toWork3;
-                    
                     // otherwise everyone has reached their latest destination:
                     // turn them back
                     // turning off means agents reach first destination and stay there.
                     for (MainAgent a : gstate.agentList) 	{
                         a.flipPath();
                     }
-
+                    
+                    
+                    // NGOAgent
+                    for (NGOAgent b : gstate.ngoAgentList)	{
+                        if (!b.reachedDestination)	{
+                            return;
+                        }
+                    }
+                    boolean toWork1 = gstate.goToWork1;
+                    gstate.goToWork1 = !toWork1;
+                    
                     for (NGOAgent b : gstate.ngoAgentList)	{
                         b.flipPath();
                     }
-
+                    
+                    
+                    // ElderlyAgent
+                    for (ElderlyAgent c : gstate.elderlyAgentList)	{
+                        if (!c.reachedDestination)	{
+                            return;
+                        }
+                    }
+                    boolean toWork2 = gstate.goToWork2;
+                    gstate.goToWork2 = !toWork2;
+                    
                     for (ElderlyAgent c : gstate.elderlyAgentList)	{
                         c.flipPath();
                     }
-
+                    
+                    
+                    // LimitedActionsAgent
+                    for (LimitedActionsAgent d : gstate.limitedActionsAgentList)	{
+                        if (!d.reachedDestination)	{
+                            return;
+                        }
+                    }
+                    boolean toWork3 = gstate.goToWork3;
+                    gstate.goToWork3 = !toWork3;
+                    
                     for (LimitedActionsAgent d : gstate.limitedActionsAgentList)	{
                         d.flipPath();
                     }
@@ -402,8 +410,8 @@ public class MK_4 extends SimState	{
 
         addIntersectionNodes(network.nodeIterator(), junctions);
     }
-
-
+    
+    
     /**
      * Read in the population files and create appropriate populations
      * @param filename
@@ -445,8 +453,8 @@ public class MK_4 extends SimState	{
                 GeomPlanarGraphEdge startingEdge = idsToEdges.get(
                 	(int) Double.parseDouble(ROAD_ID));
                 GeomPlanarGraphEdge goalEdge = idsToEdges.get(
-            		(int) Double.parseDouble(workTract));
-                    //goals[ random.nextInt(goals.length)]);
+            		//(int) Double.parseDouble(workTract));	//reads the .CSV column
+                    goals[ random.nextInt(goals.length)]); // uses the hardcoded 'goals' from above
                 //System.out.println("startingEdge: " +startingEdge);
                 //System.out.println("idsToEdges: " +idsToEdges);
                 //System.out.println("goalEdge: " +goalEdge);
@@ -725,7 +733,8 @@ public class MK_4 extends SimState	{
         GeometryFactory fact = new GeometryFactory();
         Coordinate coord = null;
         Point point = null;
-        int counter = 0;
+        @SuppressWarnings("unused")
+		int counter = 0;
 
         while (nodeIterator.hasNext())	{
             Node node = (Node) nodeIterator.next();

@@ -5,12 +5,11 @@ import java.awt.Color;
 import javax.swing.JFrame;
 
 import objects.agents.ElderlyAgent;
+import objects.agents.LimitedActionsAgent;
 import objects.agents.MainAgent;
 import objects.agents.NGOAgent;
-import objects.agents.LimitedActionsAgent;
 
 import org.jfree.data.xy.XYSeries;
-
 
 import sim.display.Console;
 import sim.display.Controller;
@@ -18,11 +17,8 @@ import sim.display.Display2D;
 import sim.display.GUIState;
 import sim.engine.SimState;
 import sim.engine.Steppable;
-import sim.field.geo.GeomVectorField;
 import sim.portrayal.geo.GeomPortrayal;
 import sim.portrayal.geo.GeomVectorFieldPortrayal;
-import sim.portrayal.simple.MovablePortrayal2D;
-import sim.portrayal.simple.OvalPortrayal2D;
 import sim.util.media.chart.TimeSeriesChartGenerator;
 
 /**
@@ -87,7 +83,7 @@ public class MK_4WithUI extends GUIState	{
          * @return name of the simulation
          */
         public static String getName()	{
-            return "EngD ABM Model MK_3";
+            return "EngD ABM Model MK_4";
         }
 
 
@@ -118,8 +114,9 @@ public class MK_4WithUI extends GUIState	{
             trafficChart.addSeries(minSpeed, null);
 
             state.schedule.scheduleRepeating(new Steppable()	{
+				private static final long serialVersionUID = -3749005402522867098L;
 
-                public void step(SimState state)	{
+				public void step(SimState state)	{
                 	MK_4 world = (MK_4) state;
                     double maxS = 0, minS = 10000, avgS = 0, count = 0;
                     /////////////// Main Agent ///////////////////////
@@ -196,17 +193,17 @@ public class MK_4WithUI extends GUIState	{
         	 * Sets up the portrayals within the map visualization.
         	 */
 
-            roadsPortrayal.setField(world.roads);
-            roadsPortrayal.setPortrayalForAll(new GeomPortrayal(Color.DARK_GRAY, 0.0005, false));
+            //roadsPortrayal.setField(world.roads);
+            //roadsPortrayal.setPortrayalForAll(new GeomPortrayal(Color.DARK_GRAY, 0.0005, false));
 
-            lsoaPortrayal.setField(world.lsoa);
-            lsoaPortrayal.setPortrayalForAll(new GeomPortrayal(Color.LIGHT_GRAY, true));
+            //lsoaPortrayal.setField(world.lsoa);
+            //lsoaPortrayal.setPortrayalForAll(new GeomPortrayal(Color.LIGHT_GRAY, true));
 
-            flood3Portrayal.setField(world.flood3);
-            flood3Portrayal.setPortrayalForAll(new GeomPortrayal(Color.CYAN, true));
+            //flood3Portrayal.setField(world.flood3);
+            //flood3Portrayal.setPortrayalForAll(new GeomPortrayal(Color.CYAN, true));
 
-            flood2Portrayal.setField(world.flood2);
-            flood2Portrayal.setPortrayalForAll(new GeomPortrayal(Color.BLUE, true));
+            //flood2Portrayal.setField(world.flood2);
+            //flood2Portrayal.setPortrayalForAll(new GeomPortrayal(Color.BLUE, true));
             
             //HouseholdsFZPortrayal.setField(world.HouseholdsFZ);
             //HouseholdsFZPortrayal.setPortrayalForAll(new GeomPortrayal(Color.YELLOW, 50, true));

@@ -20,7 +20,6 @@ import sim.util.geo.GeomPlanarGraphDirectedEdge;
  ** $Id: AStar.java 842 2012-12-18 01:09:18Z mcoletti $
  **/
 
-@SuppressWarnings("restriction")
 public class AStar
 {
 
