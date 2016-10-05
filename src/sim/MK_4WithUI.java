@@ -193,11 +193,11 @@ public class MK_4WithUI extends GUIState	{
         	 * Sets up the portrayals within the map visualization.
         	 */
 
-            //roadsPortrayal.setField(world.roads);
-            //roadsPortrayal.setPortrayalForAll(new GeomPortrayal(Color.DARK_GRAY, 0.0005, false));
+            roadsPortrayal.setField(world.roads);
+            roadsPortrayal.setPortrayalForAll(new GeomPortrayal(Color.DARK_GRAY, 0.0005, false));
 
-            //lsoaPortrayal.setField(world.lsoa);
-            //lsoaPortrayal.setPortrayalForAll(new GeomPortrayal(Color.LIGHT_GRAY, true));
+            lsoaPortrayal.setField(world.lsoa);
+            lsoaPortrayal.setPortrayalForAll(new GeomPortrayal(Color.LIGHT_GRAY, true));
 
             //flood3Portrayal.setField(world.flood3);
             //flood3Portrayal.setPortrayalForAll(new GeomPortrayal(Color.CYAN, true));
